@@ -1,0 +1,104 @@
+.contenedor{
+padding: 20px;
+width: 50%;
+margin: auto;
+overflow: hidden;
+background-color:ghostwhite;
+border-radius: 10px;
+}
+    
+.form__name{
+  border: 2px solid rgb(42, 110, 228);
+  padding: 7px;
+  margin: 5px 0;
+  height: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+    
+
+.form__hours{
+  border: 2px solid rgb(42, 110, 228);
+  padding: 7px;
+  margin: 5px 0;
+  height: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+    
+.boton_add{
+  background-color: rgb(42, 110, 228);
+  border: 2px solid rgb(42, 110, 228);
+  color: azure;
+  border-radius: 5px;
+  width: 15%;
+  box-sizing: border-box;
+  padding: 7px;
+  margin: 5px 0;
+  height: 40px;
+}
+    
+.boton_add:hover{
+  background-color:  rgb(152, 180, 231);
+}
+  
+.boton_guardar{
+  background-color: rgb(58, 133, 50);
+  border: 2px solid rgb(58, 133, 50);
+  color: azure;
+  border-radius: 5px;
+  width: 15%;
+  box-sizing: border-box;
+  padding: 7px;
+  margin: 5px 0;
+  height: 40px;
+}
+              
+.boton_guardar:hover{
+  background-color: rgb(115, 163, 109);
+}
+  
+.respuesta{
+  display: flex;
+  background-color: rgb(184, 231, 217);
+  border: 1px solid rgb(150, 182, 161);
+  border-radius: 5px;
+  padding: 17px;
+  margin: 9px 0;
+  align-items: center;
+}
+
+.botones_respuesta{
+  display: flex;
+  flex-direction: row-reverse;
+  flex: auto;
+}
+  
+      
+.boton_eliminar{
+  background-color: rgb(177, 36, 36);
+  border: 1px solid  rgb(177, 36, 36);
+  color: azure;
+  border-radius: 2px;
+  margin-left: 5px;
+  padding: 5px;
+}
+      
+.boton_eliminar:hover{
+  background-color:  rgb(205, 143, 143);
+}
+      
+.boton_editar{
+  background-color: rgb(36, 62, 177);
+  border: 1px solid  rgb(36, 62, 177);
+  color: azure;
+  border-radius: 2px;
+  padding: 5px;
+}
+      
+.boton_editar:hover{
+  background-color:  rgb(152, 180, 231);
+}
+  
