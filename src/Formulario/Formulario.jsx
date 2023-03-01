@@ -4,6 +4,13 @@ import { useState } from "react";
 
 import "bootstrap-icons/font/bootstrap-icons.css";
 
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import { Box } from "@mui/material";
+
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+
 export default function Formulario() {
   const [name, setName] = useState("");
   const [hour, setHour] = useState("");
@@ -74,63 +81,106 @@ export default function Formulario() {
   };
 
   return (
-    <div className="contenedor">
-      <form className="contenedor_form">
-        <input
-          type={"text"}
-          className="form__name"
-          placeholder="Activity"
-          required
-          autoComplete="off"
-          value={name}
-          onChange={inputChangeName}
-        />
-        <input
-          type={"number"}
-          className="form__hours"
-          placeholder="Hours"
-          required
-          autoComplete="off"
-          value={hour}
-          onChange={inputChangeHour}
-        />
+    <Box
+      width={"50%"}
+      style={{
+        padding: "20px",
+        margin: "auto",
+        borderRadius: "10px",
+        backgroundColor: "ghostwhite",
+      }}
+    >
+      <TextField
+        label="Activity"
+        color="primary"
+        focused
+        fullWidth
+        required
+        autoComplete="off"
+        value={name}
+        onChange={inputChangeName}
+        margin="normal"
+      />
 
-        {activarGuardar ? (
-          <button
-            type={"button"}
-            className="boton_guardar"
-            onClick={() => botonSave()}
-          >
-            SAVE
-          </button>
-        ) : (
-          <button type={"button"} className="boton_add" onClick={botonAdd}>
-            ADD
-          </button>
-        )}
-      </form>
+      <TextField
+        type="number"
+        label="Hours"
+        color="primary"
+        focused
+        fullWidth
+        required
+        autoComplete="off"
+        value={hour}
+        onChange={inputChangeHour}
+        margin="normal"
+      />
+
+      {activarGuardar ? (
+        <Button
+          variant="contained"
+          color="success"
+          onClick={() => botonSave()}
+          style={{
+            margin: "7px",
+          }}
+        >
+          SAVE
+        </Button>
+      ) : (
+        <Button
+          variant="contained"
+          onClick={botonAdd}
+          sx={{
+            margin: "7px",
+          }}
+        >
+          ADD
+        </Button>
+      )}
 
       {listado.map((tarea, index) => (
-        <div className="respuesta" key={index}>
+        <Box
+          key={index}
+          sx={{
+            display: "flex",
+            padding: "17px",
+            margin: "7px",
+            alignItems: "center",
+            border: "1px solid darkgreenn",
+            borderRadius: "5px",
+            backgroundColor: "mediumseagreen",
+          }}
+        >
           {tarea.name} ( {tarea.hour} {tarea.hour <= 1 ? "hour" : "hours"} )
-          <div className="botones_respuesta">
-            <button
-              type="button"
-              className="boton_eliminar"
+          <Box
+            style={{
+              display: "flex",
+              flexDirection: "row-reverse",
+              flex: "auto",
+            }}
+          >
+            <Button
+              variant="contained"
+              color="error"
+              startIcon={<DeleteIcon></DeleteIcon>}
               onClick={() => botonDelete(index)}
-            >
-              <i className="bi bi-trash"></i>
-            </button>
-            <button
-              type="button"
-              className="boton_editar"
+              style={{ margin: 3, alignItems: "center", justifyContent: "end" }}
+            ></Button>
+
+            <Button
+              variant="contained"
+              color="primary"
+              startIcon={<EditIcon></EditIcon>}
               onClick={() => botonEdit(index)}
-            >
-              <i className="bi bi-pencil"></i>
-            </button>
-          </div>
-        </div>
+              style={{
+                margin: 3,
+                alignItems: "center",
+                justifyContent: "end",
+              }}
+            ></Button>
+          </Box>
+        </Box>
       ))}
-    </div>
+    </Box>
   );
 }
