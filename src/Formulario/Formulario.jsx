@@ -1,5 +1,5 @@
 import React from "react";
-import "./formulario.css";
+
 import { useState } from "react";
 
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -8,15 +8,16 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { Box } from "@mui/material";
 
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
+import Tarea from "../Tarea/Tarea";
 
-export default function Formulario() {
+export default function Formulario(props) {
   const [name, setName] = useState("");
   const [hour, setHour] = useState("");
   const [activarGuardar, setActivarGuardar] = useState(false);
   const [tareaSeleccionada, setTareaSeleccionada] = useState({});
   const [listado, setListado] = useState([]);
+
+  const [deshabilitarBotonDetele, setDeshabilitarBotonDetele] = useState(false);
 
   const inputChangeName = (event) => {
     setName(event.target.value);
@@ -28,7 +29,13 @@ export default function Formulario() {
 
   const botonAdd = () => {
     if (name.trim() === "" || hour.trim() === "") {
-      window.alert("Debe ingresar: Actividad y Horas completo");
+      props.openYMessage("Debe ingresar: Actividad y Horas Completo");
+    } else if (
+      listado.find(
+        (tarea) => tarea.name === name.trim() && tarea.hour === hour.trim()
+      )
+    ) {
+      props.openYMessage("Exite otra actividad y hora idéntica");
     } else {
       setListado([...listado, { name: name.trim(), hour: hour }]);
 
@@ -51,6 +58,7 @@ export default function Formulario() {
       hour: listado[index].hour,
     });
 
+    setDeshabilitarBotonDetele(true);
     setActivarGuardar(true);
   };
 
@@ -60,10 +68,9 @@ export default function Formulario() {
         tarea.name === tareaSeleccionada.name &&
         tarea.hour === tareaSeleccionada.hour
     );
-    console.log(indexTareaSeleccionada);
 
     if (name.trim() === "" || hour.trim() === "") {
-      window.alert("Debe ingresar: Actividad y Horas completo");
+      props.openYMessage("Debe ingresar: Actividad y Horas Completo");
       setActivarGuardar(true);
     } else {
       const newArreglo = [...listado];
@@ -77,13 +84,14 @@ export default function Formulario() {
       setName("");
       setHour("");
       setActivarGuardar(false);
+      setDeshabilitarBotonDetele(false);
     }
   };
 
   return (
     <Box
       width={"50%"}
-      style={{
+      sx={{
         padding: "20px",
         margin: "auto",
         borderRadius: "10px",
@@ -120,7 +128,7 @@ export default function Formulario() {
           variant="contained"
           color="success"
           onClick={() => botonSave()}
-          style={{
+          sx={{
             margin: "7px",
           }}
         >
@@ -138,48 +146,19 @@ export default function Formulario() {
         </Button>
       )}
 
-      {listado.map((tarea, index) => (
-        <Box
+      {listado.map(({ name, hour }, index) => (
+        <Tarea
           key={index}
-          sx={{
-            display: "flex",
-            padding: "17px",
-            margin: "7px",
-            alignItems: "center",
-            border: "1px solid darkgreenn",
-            borderRadius: "5px",
-            backgroundColor: "mediumseagreen",
-          }}
-        >
-          {tarea.name} ( {tarea.hour} {tarea.hour <= 1 ? "hour" : "hours"} )
-          <Box
-            style={{
-              display: "flex",
-              flexDirection: "row-reverse",
-              flex: "auto",
-            }}
-          >
-            <Button
-              variant="contained"
-              color="error"
-              startIcon={<DeleteIcon></DeleteIcon>}
-              onClick={() => botonDelete(index)}
-              style={{ margin: 3, alignItems: "center", justifyContent: "end" }}
-            ></Button>
-
-            <Button
-              variant="contained"
-              color="primary"
-              startIcon={<EditIcon></EditIcon>}
-              onClick={() => botonEdit(index)}
-              style={{
-                margin: 3,
-                alignItems: "center",
-                justifyContent: "end",
-              }}
-            ></Button>
-          </Box>
-        </Box>
+          name={name}
+          hour={hour}
+          botonDelete={() => botonDelete(index)}
+          botonEdit={() => botonEdit(index)}
+          deshabilitarBotonDetele={
+            tareaSeleccionada.name === name && tareaSeleccionada.hour === hour
+              ? deshabilitarBotonDetele
+              : false
+          }
+        ></Tarea>
       ))}
     </Box>
   );

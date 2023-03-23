@@ -1,11 +1,10 @@
-import Formulario from "./Formulario/Formulario";
 import "./App.css";
+import ToDoListComponent from "./ToDoListComponent";
 
 function App() {
   return (
     <div className="App">
-      <h1>TO DO List</h1>
-      <Formulario></Formulario>
+      <ToDoListComponent></ToDoListComponent>
     </div>
   );
 }
