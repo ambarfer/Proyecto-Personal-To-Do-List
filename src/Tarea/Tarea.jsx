@@ -14,7 +14,7 @@ export default function Tarea(props) {
         sx={{
           display: "flex",
           padding: "10px",
-          margin: "12px 0px 18px 0px",
+          margin: "12px 60px 18px 60px",
           alignItems: "center",
           border: "1px solid darkgreenn",
           borderRadius: "5px",
