@@ -19,7 +19,7 @@ export default function ToDoListComponent() {
 
   return (
     <div>
-      <h1>TO DO List</h1>
+      <h1 style={{ color: "rgb(21 79 178)" }}>TO DO List</h1>
       <Formulario openYMessage={openYMessage}></Formulario>
       <ModalAlert
         open={open}
