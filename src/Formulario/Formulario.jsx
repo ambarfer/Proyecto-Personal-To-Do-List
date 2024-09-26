@@ -128,8 +128,8 @@ export default function Formulario(props) {
           margin: "25px",
           borderRadius: "10px",
           backgroundColor: "ghostwhite",
-          width: "710px",
-          height: "210px",
+          //width: "710px",
+          //height: "210px",
         }}
       >
         <TextField

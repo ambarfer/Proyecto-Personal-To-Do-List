@@ -11,9 +11,10 @@ export default function Tarea(props) {
     <>
       <Box display={"flex"} justifyContent={"center"}>
         <Box
-          width={"731px"}
+          width={"551px"}
           key={props.index}
           sx={{
+            margin: "2px",
             display: "flex",
             padding: "10px",
             alignItems: "center",
